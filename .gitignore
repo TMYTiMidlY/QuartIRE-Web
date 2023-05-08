@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-plareport/settings.py
+qtire/settings.py
 
 # C extensions
 *.so
