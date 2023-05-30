@@ -1,183 +1,235 @@
-{% extends "nav.html" %}
 {% load static %}
-{% block home_link %}
-  <a href="#" class="nav-link px-2 link-secondary">Home</a>
-{% endblock home_link %}
-{% block main_start %}
-<div class="vw-100">
-{% endblock main_start %}
-{% block main_end %}
-</div>
-{% endblock main_end %}
-{% block nav_start %}
-    <div class="container-fluid d-flex flex-column vh-100 overflow-hidden">
-  {% endblock nav_start %}
-  {% block nav_end %}
-  </div>
-{% endblock nav_end %}
-{% block main %}
-  {% comment %} <div class="w-100"></div> {% endcomment %}
-  <div class="row flex-grow-1 d-flex flex-row overflow-hidden">
-    <div id="sidebar" class="col-1 mh-100 flex-shrink-0 bg-white">
-      <a href="/"
-         class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-        {% comment %} <svg class="bi me-2" width="30" height="24">
-            <use xlink:href="#bootstrap" />
-        </svg> {% endcomment %}
-        {% comment %} <span class="fs-5 fw-semibold">Collapsible</span> {% endcomment %}
-      </a>
-      <ul class="list-unstyled ps-0">
-        <li class="mb-1">
-          <button class="btn btn-toggle align-items-center rounded collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#home-collapse"
-                  aria-expanded="true">Home</button>
-          <div class="collapse show" id="home-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <a href="#" class="link-dark rounded">Overview</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Updates</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Reports</a>
-              </li>
-            </ul>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="editor">
+    <meta name="keywords" content="editor">
+    <meta name="author" content="TiMidlY">
+    <title>QuartIRE LaTeX Editor</title>
+  </head>
+  <body>
+    {% include "svg.html" %}
+    <main>
+      <div class="vw-100">
+        <div class="container-fluid d-flex flex-column vh-100 overflow-hidden">
+          <header class="row d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-1 mb-0 border-bottom">
+            {% include "nav.html" with home_class="nav-link px-2 link-secondary" %}
+          </header>
+          <div class="row flex-grow-1 d-flex flex-row overflow-hidden">
+            <div id="sidebar" class="col-1 p-0 flex-shrink-0 bg-white">
+              {% comment %} <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"> {% endcomment %}
+              {% comment %} <svg class="bi me-2" width="30" height="24">
+                    <use xlink:href="#bootstrap" />
+              </svg> {% endcomment %}
+              {% comment %} <span class="fs-5 fw-semibold">目录</span> {% endcomment %}
+              {% comment %} <div class = "container"> {% endcomment %}
+              <div class="container p-3 d-flex justify-content-center border-bottom">
+                <button type="button"
+                        class="btn btn-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#addQtyModal">添加</button>
+              </div>
+              <ul class="list-unstyled ps-0">
+                <li class="mb-1">
+                  <button class="btn btn-toggle align-items-center rounded collapsed"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#x-collapse"
+                          aria-expanded="true">数据记录</button>
+                  <div class="collapse show" id="x-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      {% comment %} {% for measure_qty in measure_qtys %}
+                      <li>
+                        <a href="#" class="link-dark rounded">{{ measure_qty.name }}</a>
+                      </li>
+                      {% endfor %}
+                      {% for target_qty in target_qtys %}
+                      <li>
+                        <a href="#" class="link-dark rounded">{{ target_qty.name }}</a>
+                      </li>
+                      {% endfor %} {% endcomment %}
+                    </ul>
+                  </div>
+                </li>
+                <li class="mb-1">
+                  <button class="btn btn-toggle align-items-center rounded collapsed"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#qty-process-collapse"
+                          aria-expanded="true">数据处理</button>
+                  <div class="collapse show" id="qty-process-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      {% for measure_qty in measure_qtys %}
+                        <li>
+                          <a href="#" class="link-dark rounded">{{ measure_qty.name }}</a>
+                        </li>
+                      {% endfor %}
+                      {% for target_qty in target_qtys %}
+                        <li>
+                          <a href="#" class="link-dark rounded">{{ target_qty.name }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </li>
+                {% comment %} <li class="border-top my-3"></li>
+                <li class="mb-1">
+                  <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">Account</button>
+                  <div class="collapse" id="account-collapse">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                      <li>
+                        <a href="#" class="link-dark rounded">New...</a>
+                      </li>
+                      <li>
+                        <a href="#" class="link-dark rounded">Profile</a>
+                      </li>
+                      <li>
+                        <a href="#" class="link-dark rounded">Settings</a>
+                      </li>
+                      <li>
+                        <a href="#" class="link-dark rounded">Sign out</a>
+                      </li>
+                    </ul>
+                  </div>
+                </li> {% endcomment %}
+              </ul>
+              {% comment %} <hr>
+              <div class="dropdown flex-grow-1">
+                <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                  <strong>mdo</strong>
+                </a>
+                <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                  <li>
+                    <a class="dropdown-item" href="#">New project...</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Settings</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Profile</a>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="#">Sign out</a>
+                  </li>
+                </ul>
+              </div> {% endcomment %}
+            </div>
+            <div class="resizer"></div>
+            <div id="codemirror" class="col position-relative">
+              <div id="cmContainer" class="position-absolute h-100 v-100"></div>
+              {% comment %} <div>
+                <div class="container py-4 px-3 mx-auto">
+                  <h1>Hello, Bootstrap and Webpack!</h1>
+                  <button class="btn btn-primary">Primary button</button>
+                </div>
+                <div class="container">
+                  <h1>我的第一个 Bootstrap 页面</h1>
+                  <p>这是一些文本。</p>
+                </div>
+                <div class="container-fluid">
+                  <h1>我的第一个 Bootstrap 页面</h1>
+                  <p>使用了 .container-fluid，100% 宽度，占据全部视口（viewport）的容器。</p>
+                </div>
+              </div> {% endcomment %}
+            </div>
+            <div class="resizer"></div>
+            <div id="output"
+                 class="col-5 flex-shrink-0 position-relative overflow-auto p-0 m-0">
+              {% comment %} <div class="w-100">11111111111111111111111111111111111111111111111111111111111111111111111111111111</div> {% endcomment %}
+              <div id="viewerContainer" class="position-absolute h-100 v-100">
+                <div id="viewer" class="pdfViewer"></div>
+              </div>
+              {% comment %} <div id="hiddenContainer" class="te-invisible"></div> {% endcomment %}
+              {% comment %} <div id="pageContainer"> </div> {% endcomment %}
+              {% comment %} <canvas id="theCanvas"></canvas> {% endcomment %}
+              {% comment %} <iframe src="{% static 'cm/test.pdf' %}" width="100%" height="500px"></iframe> {% endcomment %}
+              {% comment %} <embed src="{% static 'cm/test.pdf' %}" type="application/pdf" height="100%" /> {% endcomment %}
+              {% comment %} <object data="{% static 'cm/test.pdf' %}" type="application/pdf" width="100%" height="100%"> {% endcomment %}
+            </div>
           </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle align-items-center rounded collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#dashboard-collapse"
-                  aria-expanded="false">Dashboard</button>
-          <div class="collapse" id="dashboard-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <a href="#" class="link-dark rounded">Overview</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Weekly</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Monthly</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Annually</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="mb-1">
-          <button class="btn btn-toggle align-items-center rounded collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#orders-collapse"
-                  aria-expanded="false">Orders</button>
-          <div class="collapse" id="orders-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <a href="#" class="link-dark rounded">New</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Processed</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Shipped</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Returned</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="border-top my-3"></li>
-        <li class="mb-1">
-          <button class="btn btn-toggle align-items-center rounded collapsed"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#account-collapse"
-                  aria-expanded="false">Account</button>
-          <div class="collapse" id="account-collapse">
-            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-              <li>
-                <a href="#" class="link-dark rounded">New...</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Profile</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Settings</a>
-              </li>
-              <li>
-                <a href="#" class="link-dark rounded">Sign out</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-      </ul>
-      <hr>
-      <div class="dropdown flex-grow-1">
-        <a href="#"
-           class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-           id="dropdownUser2"
-           data-bs-toggle="dropdown"
-           aria-expanded="false">
-          <img src="https://github.com/mdo.png"
-               alt=""
-               width="32"
-               height="32"
-               class="rounded-circle me-2">
-          <strong>mdo</strong>
-        </a>
-        <ul class="dropdown-menu text-small shadow"
-            aria-labelledby="dropdownUser2">
-          <li>
-            <a class="dropdown-item" href="#">New project...</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Settings</a>
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Profile</a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li>
-            <a class="dropdown-item" href="#">Sign out</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="resizer container-sm"></div>
-    <div id="codemirror" class="col mh-100">
-      {% comment %} <div>
-        <div class="container py-4 px-3 mx-auto">
-          <h1>Hello, Bootstrap and Webpack!</h1>
-          <button class="btn btn-primary">Primary button</button>
         </div>
-        <div class="container">
-          <h1>我的第一个 Bootstrap 页面</h1>
-          <p>这是一些文本。</p>
-        </div>
-        <div class="container-fluid">
-          <h1>我的第一个 Bootstrap 页面</h1>
-          <p>使用了 .container-fluid，100% 宽度，占据全部视口（viewport）的容器。</p>
-        </div>
-      </div> {% endcomment %}
-    </div>
-    <div class="resizer"></div>
-    <div id="output" class="col-2 flex-shrink-0">
-      <div class="container">
-        <h1>我的第一个 Bootstrap 页面</h1>
-        <p>这是一些文本。</p>
       </div>
-      <div class="container-fluid">
-        <h1>我的第一个 Bootstrap 页面</h1>
-        <p>使用了 .container-fluid，100% 宽度，占据全部视口（viewport）的容器。</p>
+    </main>
+    <!-- Modal -->
+    {% load static %}
+    <!-- Add Bootstrap CSS -->
+    <link href="{% static 'path/to/bootstrap.min.css' %}" rel="stylesheet">
+    <script>
+  // Add this script to update the form fields based on the selected quantity type
+  document.addEventListener('DOMContentLoaded', function () {
+    const quantityTypeSelect = document.getElementById('id_quantity_type');
+    const updateFieldsVisibility = () => {
+      const quantityType = quantityTypeSelect.value;
+      document.querySelectorAll('.measureqty-field, .targetqty-field').forEach(field => {
+        field.style.display = field.classList.contains(`${quantityType}-field`) ? 'block' : 'none';
+      });
+    };
+    quantityTypeSelect.addEventListener('change', updateFieldsVisibility);
+    updateFieldsVisibility();
+  });
+    </script>
+    <div class="modal fade"
+         id="addQtyModal"
+         tabindex="-1"
+         aria-labelledby="addQtyModalLabel"
+         aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addQtyModalLabel">添加物理量</h5>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="关闭"></button>
+          </div>
+          <div class="modal-body">
+            <div id="addQtyForm" class="form-group row">
+              {% csrf_token %}
+              <div class="col-md-6 ">
+                <label for="{{ qty_form.quantity_type.auto_id }}" class="form-label">类型</label>
+                {{ qty_form.quantity_type }}
+              </div>
+              <div class="measureqty-fields">
+                {% for field in qty_form.measure_qty_form %}
+                  <div class="mb-3 measureqty-field">
+                    <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                  </div>
+                {% endfor %}
+              </div>
+              <div class="targetqty-fields">
+                {% for field in qty_form.target_qty_form %}
+                  <div class="mb-3 targetqty-field">
+                    <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                  </div>
+                {% endfor %}
+                {% comment %} <div class="mb-3">
+                <label for="{{ qty_form.quantity_type.auto_id }}" class="form-label">Quantity Type</label>
+                </div>
+                </div> {% endcomment %}
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary" id="submitQtyForm">保存</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-{% endblock main %}
-{% block script %}
-  <script src="{% static 'cm/main.bundle.js' %}"></script>
-{% endblock script %}
+      <script>
+      var new_qty_url = "{% url 'new_qty' %}";
+      var doc_url = "{% static 'cm/doc.txt' %}";
+      var pdf_url = "{% static 'cm/test.pdf' %}";
+      var cmap_url = "{% static 'cm/pdf.cmaps/' %}";
+      var sandbox_src_url = "{% static 'cm/pdf.sandbox.js' %}";
+      </script>
+      {% comment %} <script>var camp_url = "{% static 'cm/test.pdf' %}"</script> {% endcomment %}
+      <script src="{% static 'cm/main.bundle.js' %}"></script>
+    </body>
+  </html>

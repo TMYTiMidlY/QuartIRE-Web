@@ -4,18 +4,20 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
     "start": "webpack serve",
-    "serve": "python manage.py runserver"
+    "server": "python manage.py runserver",
+    "migrate": "python manage.py makemigrations && python manage.py migrate",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "autoprefixer": "^10.4.14",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
     "postcss-loader": "^7.3.0",
+    "raw-loader": "^4.0.2",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
     "style-loader": "^3.3.2",
@@ -24,10 +26,20 @@
     "webpack-dev-server": "^4.15.0"
   },
   "dependencies": {
+    "@codemirror/autocomplete": "^6.7.1",
+    "@codemirror/lang-markdown": "^6.1.1",
     "@codemirror/lang-python": "^6.1.2",
+    "@codemirror/language": "^6.6.0",
+    "@codemirror/legacy-modes": "^6.3.2",
     "@codemirror/state": "^6.2.0",
+    "@codemirror/view": "^6.11.2",
+    "@grammarly/editor-sdk": "^1.8.4",
     "@popperjs/core": "^2.11.7",
     "bootstrap": "^5.2.3",
-    "codemirror": "^6.0.1"
+    "codemirror": "^6.0.1",
+    "lezer": "^0.13.5",
+    "lezer-generator": "^0.13.4",
+    "lodash": "^4.17.21",
+    "pdfjs-dist": "^3.6.172"
   }
 }

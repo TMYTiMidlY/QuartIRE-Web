@@ -1,12 +1,9 @@
 const path = require('path');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
-    // index: './src/index.js',
-    // print: './src/print.js',
-    // editor: './src/editor.js',
-    "cm/main": './cm/src/js/main.js',
-    // "cm/sidebar": './cm/src/js/sidebar.js',
+    "cm/main": "./cm/src/js/main.js",
   },
   output: {
     path: path.resolve(__dirname, "dist"), // Should be in STATICFILES_DIRS
@@ -40,9 +37,33 @@ module.exports = {
             loader: 'sass-loader'
           }
         ]
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.txt$/i,
+        use: 'raw-loader',
       }
     ]
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'node_modules/pdfjs-dist/cmaps/',
+          to: 'cm/pdf.cmaps/',
+        },
+        {
+          from: 'node_modules/pdfjs-dist/build/pdf.sandbox.js',
+          to: 'cm/pdf.sandbox.js',
+        },
+        // { from: "source", to: "dest" },
+        // { from: "other", to: "public" },
+      ],
+    }),
+  ],
   mode: 'development',
   devtool: 'inline-source-map',
   devServer: {

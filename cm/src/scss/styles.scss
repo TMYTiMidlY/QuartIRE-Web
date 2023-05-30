@@ -2,57 +2,26 @@
 // Import all of Bootstrap's CSS
 @import "~bootstrap/scss/bootstrap";
 
+/* Centers content inside the modal */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-
-// body {
-//     min-height: 100vh;
-//     min-height: -webkit-fill-available;
+// /* Apply rounded borders to the input fields */
+// input,
+// select,
+// textarea {
+//     border-radius: 5px !important;
 // }
 
-// #codemirror {
-//     margin: 0;
-//     padding: 0;
-//     background: #fff;
-//     color: #444;
-//     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-// }
+// /* Add vertical line separator between label and input field */
+.form-label {
+    // padding-right: 0.5rem;
+    // margin-right: 0.5rem;
+}
 
-// html {
-//     height: -webkit-fill-available;
-// }
-
-// main {
-//     // display: flex;
-//     // flex-wrap: nowrap;
-//     height: 100%;
-//     height: -webkit-fill-available;
-//     // max-height: 100vh;
-//     // overflow-x: auto;
-//     // overflow-y: hidden;
-// }
-
-// body {
-//     position: relative;
-//     height: auto;
-//     min-height: 100vh;
-//     display: flex;
-//     -webkit-box-orient: vertical;
-//     -webkit-box-direction: normal;
-//     overflow: hidden;
-//     margin: 0;
-// }
-
-// #wrapper {
-//     -webkit-box-orient: vertical;
-//     -webkit-box-direction: normal;
-//     flex-direction: column;
-//     overflow: hidden;
-//     position: absolute;
-//     width: 100%;
-//     display: flex;
-//     margin: 0;
-//     padding: 0;
-// }
 
 
 .resizer {
@@ -69,18 +38,22 @@
     box-sizing: border-box;
 }
 
-// #main {
-//     flex-basis: 0;
-//     flex-grow: 1;
-//     min-width: 0;
 
-//     // background: lightblue;
-//     // height: 100%;
-//     // flex-direction: row;
-//     // position: relative;
-//     // display: flex;
-//     // margin: 0;
-//     // padding: 0;
+// #codemirror {
+//     margin: 0;
+//     padding: 0;
+//     background: #fff;
+//     color: #444;
+//     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+// }
+
+
+grammarly-editor-plugin {
+    --grammarly-button-position-right: 720px;
+}
+
+// grammarly-button {
+// --menu-position: right;
 // }
 
 
